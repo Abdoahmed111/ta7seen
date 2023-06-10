@@ -35,10 +35,10 @@ const Navbar = () => {
               <a>الحصون الخمسة</a>
               <ul className="p-2">
                 <li>
-                  <a>جدول جديد</a>
+                  <Link href="/weeks/create">جدول جديد</Link>
                 </li>
                 <li>
-                  <a>جميع الجداول</a>
+                  <Link href={"/weeks"}>جميع الجداول</Link>
                 </li>
               </ul>
             </li>
@@ -63,10 +63,10 @@ const Navbar = () => {
               <summary>الحصون الخمسة</summary>
               <ul className="p-2">
                 <li>
-                  <a>جدول جديد</a>
+                  <Link href="/weeks/create">جدول جديد</Link>
                 </li>
                 <li>
-                  <a>جميع الجداول</a>
+                  <Link href={"/weeks"}>جميع الجداول</Link>
                 </li>
               </ul>
             </details>
