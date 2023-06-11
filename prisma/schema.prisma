@@ -4,14 +4,59 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Week {
+  id          String       @id @default(cuid())
+  start       DateTime
+  end         DateTime
+  userId      String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  weekDetails WeekDetails?
+  Days        Day[]
+
+  @@index([userId])
+}
+
+model WeekDetails {
+  id               String   @id @default(cuid())
+  readingAmount    Int
+  readingStart     Int
+  listeningAmount  Int
+  ListeningStart   Int
+  newAmount        Int
+  newStart         Int
+  nearReviewAmount Int
+  farReviewAmount  Int
+  week             Week     @relation(fields: [weekId], references: [id])
+  weekId           String   @unique
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Day {
+  id        String   @id @default(cuid())
+  name      String
+  week      Week     @relation(fields: [weekId], references: [id])
+  weekId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Tasks     Tasks[]
+}
+
+model Tasks {
+  id        String   @id @default(cuid())
+  name      String
+  from      Int
+  to        Int
+  day       Day      @relation(fields: [dayId], references: [id])
+  dayId     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
