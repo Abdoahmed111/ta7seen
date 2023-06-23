@@ -19,7 +19,7 @@ model Week {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   weekDetails WeekDetails?
-  Days        Day[]
+  days        Day[]
 
   @@index([userId])
 }
@@ -44,19 +44,23 @@ model Day {
   id        String   @id @default(cuid())
   name      String
   week      Week     @relation(fields: [weekId], references: [id])
-  weekId    String   @unique
+  weekId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Tasks     Tasks[]
+  tasks     Task[]
+
+  @@index([weekId])
 }
 
-model Tasks {
+model Task {
   id        String   @id @default(cuid())
   name      String
   from      Int
   to        Int
   day       Day      @relation(fields: [dayId], references: [id])
-  dayId     String   @unique
+  dayId     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([dayId])
 }

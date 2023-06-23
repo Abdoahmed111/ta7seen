@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import Input from "./Input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { api } from "@/utils/api";
+import { useRouter } from "next/router";
 
 type FromValues = {
   weekStart: string;
@@ -17,8 +19,10 @@ type FromValues = {
 };
 
 const WeekForm = () => {
+  const [success, setSuccess] = useState(false);
+  const router = useRouter();
   const schema = z.object({
-    weekStart: z.string().nonempty("يرجى إدخال تاريخ بداية الأسبوع"),
+    weekStart: z.any(),
     readingAmount: z
       .number()
       .min(0, "قيمة القراءة يجب أن تكون أكبر من أو تساوي صفر"),
@@ -62,11 +66,26 @@ const WeekForm = () => {
     },
     resolver: zodResolver(schema),
   });
+  const generateWeek = api.createWeek.generateWeek.useMutation({
+    onSuccess(data) {
+      setSuccess(true);
+      setTimeout(() => {
+        void router.push("/weeks");
+      }, 3000);
+    },
+  });
 
-  const onSubmit: SubmitHandler<FromValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FromValues> = (data) => {
+    generateWeek.mutate(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {success && (
+        <div className="alert alert-success mb-5">
+          <span>تم انشاء الجدول بنجاح، سيتم توجيهك الآن الي صفحة وردك</span>
+        </div>
+      )}
       <h4 className="my-2 text-xl text-primary">معلومات عامة</h4>
       <div className="mb-10 grid grid-cols-3 gap-3">
         <Input
@@ -75,7 +94,7 @@ const WeekForm = () => {
           label="بداية الاسبوع"
           error={errors.weekStart ? errors.weekStart.message : ""}
           className={errors.weekStart ? "input-error" : ""}
-          {...register("weekStart")}
+          {...register("weekStart", { valueAsDate: true })}
         />
       </div>
 
@@ -173,7 +192,11 @@ const WeekForm = () => {
       </div>
 
       <button type="submit" disabled={isSubmitting} className="btn-primary btn">
-        انشاء الجدول
+        {isSubmitting ? (
+          <span className="loading loading-spinner loading-md"></span>
+        ) : (
+          "إنشاء الجدول"
+        )}
       </button>
     </form>
   );
