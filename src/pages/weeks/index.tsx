@@ -40,20 +40,20 @@ const Week: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
-        className="flex min-h-screen w-full flex-col items-end justify-start font-elmessiri"
+        class="flex min-h-screen w-full flex-col items-end justify-start font-elmessiri"
         dir="rtl"
       >
         <Navbar />
 
-        <div className="min-h-screen w-full bg-base-200">
-          <div className="container mx-auto">
-            <h2 className="mb-5 text-2xl">الورد اليومي</h2>
-            <div className="bottom-2 my-8 rounded-lg border border-amber-50 p-5">
+        <div class="min-h-screen w-full bg-base-200">
+          <div class="container mx-auto">
+            <h2 class="mb-5 text-2xl">الورد اليومي</h2>
+            <div class="bottom-2 my-8 rounded-lg border border-amber-50 p-5">
               {currentDay && (
                 <div>
                   <p> {currentDay.name}</p>
                   {currentDay.tasks.map((task: Task) => (
-                    <div key={task.id} className="flex gap-3">
+                    <div key={task.id} class="flex gap-3">
                       <div>{task.name}</div>
                       <div>{task.from}</div>
                       <div>{task.to}</div>
@@ -63,9 +63,9 @@ const Week: NextPage = () => {
               )}
             </div>
 
-            <h2 className="mb-5 text-2xl">جدول الاسبوع</h2>
-            <div className="overflow-x-auto">
-              <table className="table">
+            <h2 class="mb-5 text-2xl">جدول الاسبوع</h2>
+            <div class="overflow-x-auto">
+              <table class="table">
                 {/* head */}
                 <thead>
                   <tr>
@@ -98,22 +98,22 @@ const Week: NextPage = () => {
                           {day.tasks[4]?.from === day.tasks[4]?.to
                             ? day.tasks[4]?.from
                             : day.tasks[4]
-                            ? `${day.tasks[4]?.from} : ${day.tasks[4]?.to}`
-                            : ""}
+                              ? `${day.tasks[4]?.from} : ${day.tasks[4]?.to}`
+                              : ""}
                         </td>
                         <td>
                           {day.tasks[5]?.from === day.tasks[5]?.to
                             ? day.tasks[5]?.from
                             : day.tasks[5]
-                            ? `${day.tasks[5]?.from} : ${day.tasks[5]?.to}`
-                            : ""}
+                              ? `${day.tasks[5]?.from} : ${day.tasks[5]?.to}`
+                              : ""}
                         </td>
                         <td>
                           {day.tasks[0]?.from === day.tasks[0]?.to
                             ? day.tasks[0]?.from
                             : day.tasks[0]?.from && day.tasks[0]?.to
-                            ? `${day.tasks[0]?.from} : ${day.tasks[0]?.to}`
-                            : ""}
+                              ? `${day.tasks[0]?.from} : ${day.tasks[0]?.to}`
+                              : ""}
                         </td>
                         <td>
                           {day.tasks[1]?.from} : {day.tasks[1]?.to}
@@ -130,13 +130,13 @@ const Week: NextPage = () => {
         </div>
 
         {/* Footer */}
-        <footer className="footer mx-auto items-center justify-center bg-neutral p-4 text-neutral-content">
-          <div className="items-center">
+        <footer class="footer mx-auto items-center justify-center bg-neutral p-4 text-neutral-content">
+          <div class="items-center">
             <p>
               حقوق النشر محفوظة © 2022 تم تطويره بواسطة
               <a
                 target="_blank"
-                className="mx-1 text-warning"
+                class="mx-1 text-warning"
                 href="https://www.linkedin.com/in/abdelrahman114/"
               >
                 عبدالرحمن أحمد عباس

@@ -1,3 +1,6 @@
+
+ 
+
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
@@ -5,10 +8,10 @@ import React from "react";
 const Navbar = () => {
   const user = useUser();
   return (
-    <div className="container navbar mx-auto">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn-ghost btn lg:hidden">
+    <div class="container navbar mx-auto">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <label tabIndex={0} class="btn-ghost btn lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -26,14 +29,14 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu rounded-box menu-sm mt-3 w-52 bg-base-100 p-2 shadow"
+            class="dropdown-content menu rounded-box menu-sm mt-3 w-52 bg-base-100 p-2 shadow"
           >
             <li>
               <Link href="/">الرئيسية</Link>
             </li>
             <li>
               <a>الحصون الخمسة</a>
-              <ul className="p-2">
+              <ul class="p-2">
                 <li>
                   <Link href="/weeks/create">جدول جديد</Link>
                 </li>
@@ -47,21 +50,21 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="flex cursor-pointer items-center justify-center gap-2 text-xl normal-case">
-          <span className="mt-3 text-2xl font-semibold text-primary">
+        <a class="flex cursor-pointer items-center justify-center gap-2 text-xl normal-case">
+          <span class="mt-3 text-2xl font-semibold text-primary">
             تحصين القرآن
           </span>
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
           <li>
             <Link href="/">الرئيسية</Link>
           </li>
           <li tabIndex={0}>
             <details>
               <summary>الحصون الخمسة</summary>
-              <ul className="p-2">
+              <ul class="p-2">
                 <li>
                   <Link href="/weeks/create">جدول جديد</Link>
                 </li>
@@ -73,13 +76,13 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end flex items-center justify-end gap-2">
+      <div class="navbar-end flex items-center justify-end gap-2">
         {user.isSignedIn ? (
-          <div className="btn-natural btn">
+          <div class="btn-natural btn">
             <SignOutButton>تسجيل الخروج</SignOutButton>
           </div>
         ) : (
-          <div className="btn-primary btn">
+          <div class="btn-primary btn">
             <SignInButton>تسجيل الدخول</SignInButton>
           </div>
         )}

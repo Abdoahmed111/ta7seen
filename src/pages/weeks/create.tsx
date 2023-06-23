@@ -12,8 +12,7 @@ const create = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
-        className="flex min-h-screen w-full flex-col items-end justify-start font-elmessiri"
-        dir="rtl"
+        className="flex min-h-screen w-full flex-col items-end justify-start font-elmessiri" dir="rtl"
       >
         <Navbar />
 

@@ -1,3 +1,6 @@
+
+ 
+
 import React, { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import Input from "./Input";
@@ -82,12 +85,12 @@ const WeekForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {success && (
-        <div className="alert alert-success mb-5">
+        <div class="alert alert-success mb-5">
           <span>تم انشاء الجدول بنجاح، سيتم توجيهك الآن الي صفحة وردك</span>
         </div>
       )}
-      <h4 className="my-2 text-xl text-primary">معلومات عامة</h4>
-      <div className="mb-10 grid grid-cols-3 gap-3">
+      <h4 class="my-2 text-xl text-primary">معلومات عامة</h4>
+      <div class="mb-10 grid grid-cols-3 gap-3">
         <Input
           labelAlt={""}
           type="date"
@@ -98,10 +101,8 @@ const WeekForm = () => {
         />
       </div>
 
-      <h4 className="my-2 text-xl text-primary">
-        بيانات حصن القراءة و الاستماع
-      </h4>
-      <div className="grid grid-cols-4 gap-3">
+      <h4 class="my-2 text-xl text-primary">بيانات حصن القراءة و الاستماع</h4>
+      <div class="grid grid-cols-4 gap-3">
         <Input
           labelAlt={"عدد الصفحات"}
           type="number"
@@ -143,8 +144,8 @@ const WeekForm = () => {
         />
       </div>
 
-      <h4 className="my-2 text-xl text-primary">بيانات حصن الجديد</h4>
-      <div className="grid grid-cols-4 gap-3">
+      <h4 class="my-2 text-xl text-primary">بيانات حصن الجديد</h4>
+      <div class="grid grid-cols-4 gap-3">
         <Input
           labelAlt={"عدد الصفحات"}
           type="number"
@@ -166,10 +167,10 @@ const WeekForm = () => {
         />
       </div>
 
-      <h4 className="my-2 text-xl text-primary">
+      <h4 class="my-2 text-xl text-primary">
         بيانات حصن التعاهد القريب والبعيد
       </h4>
-      <div className="grid grid-cols-4 gap-3">
+      <div class="grid grid-cols-4 gap-3">
         <Input
           labelAlt={"عدد الصفحات"}
           type="number"
@@ -191,9 +192,9 @@ const WeekForm = () => {
         />
       </div>
 
-      <button type="submit" disabled={isSubmitting} className="btn-primary btn">
+      <button type="submit" disabled={isSubmitting} class="btn-primary btn">
         {isSubmitting ? (
-          <span className="loading loading-spinner loading-md"></span>
+          <span class="loading loading-spinner loading-md"></span>
         ) : (
           "إنشاء الجدول"
         )}

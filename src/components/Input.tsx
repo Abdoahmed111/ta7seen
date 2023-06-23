@@ -1,3 +1,6 @@
+
+ 
+
 import React from "react";
 
 type InputProps = {
@@ -14,14 +17,14 @@ const Input = (
 ) => {
   const classes = "input-bordered input w-full max-w-xs " + className;
   return (
-    <div className="form-control w-full max-w-xs">
-      <label className="label">
-        <span className="label-text">{label}</span>
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        <span class="label-text">{label}</span>
       </label>
-      <input type={type} className={classes} ref={ref} {...rest} />
-      <label className="label">
-        <span className="label-text text-red-400">{error}</span>
-        <span className="label-text-alt text-warning">{labelAlt}</span>
+      <input type={type} class={classes} ref={ref} {...rest} />
+      <label class="label">
+        <span class="label-text text-red-400">{error}</span>
+        <span class="label-text-alt text-warning">{labelAlt}</span>
       </label>
     </div>
   );
