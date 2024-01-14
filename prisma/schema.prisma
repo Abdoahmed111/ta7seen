@@ -2,17 +2,65 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Week {
+  id          String       @id @default(cuid())
+  start       DateTime
+  end         DateTime
+  userId      String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  weekDetails WeekDetails?
+  days        Day[]
+
+  @@index([userId])
+}
+
+model WeekDetails {
+  id               String   @id @default(cuid())
+  readingAmount    Int
+  readingStart     Int
+  listeningAmount  Int
+  ListeningStart   Int
+  newAmount        Int
+  newStart         Int
+  nearReviewAmount Int
+  farReviewAmount  Int
+  week             Week     @relation(fields: [weekId], references: [id])
+  weekId           String   @unique
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Day {
+  id        String   @id @default(cuid())
+  name      String
+  week      Week     @relation(fields: [weekId], references: [id])
+  weekId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tasks     Task[]
+
+  @@index([weekId])
+}
+
+model Task {
+  id        String   @id @default(cuid())
+  name      String
+  from      Int
+  to        Int
+  day       Day      @relation(fields: [dayId], references: [id])
+  dayId     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([dayId])
 }
